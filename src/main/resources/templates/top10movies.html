@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <title>Movie List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+  <link type="text/css" rel="stylesheet" href="css/bulma.css" th:href="@{css/bulma.css}" />
+  
+  <script>
+  
+  
+  </script>
+  
+</head>
+
+<body background="http://bgfons.com/uploads/money/money_texture1082.jpg">
+
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Top 10 Movies Ranked By IMDb</h1>
+        <h2 class="subtitle">by Valtteri</h2>
+      </div>
+    </div>
+  </section>
+  
+ <section class="hero is-white">
+ <div class="tabs is-boxed">
+  <ul>
+    <li><a href="http://localhost:8080/movielist">My Movies</a></li>
+    <li class="is-active" ><a>Top 10 Movie</a></li>
+    <a/>
+     <form th:action="@{/logout}" method="post" style="float: right">
+            <input type="submit" value="Sign Out" class="button is-danger"/>
+        </form>
+  </ul>
+</div>
+</section>
+
+<br/>
+
+<div class="box" style=width:450px>
+    <article class="media">
+      <div class="media-left">
+
+        <table class="table1 table is-striped">
+          <tr>
+            <th>Name</th>
+            <th>Rank</th>
+            
+          </tr>
+          
+
+        </table>
+      </div>
+    </article>
+    
+  </div>
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script>
+ $.getJSON("top10.json", function( data ){
+	 
+	 var items = [];
+	 
+	 $.each( data, function( key, val ){
+		 items.push( "<tr>" );
+		 items.push("<td id='" + key + "'>" + val.title + "</td>");
+		 items.push("<td id='" + key + "'>" + val.rank + "</td>");
+		 items.push( "</tr>" ); 
+	 });
+	 
+	 $( "<tbody/>", {"class": "mydata", html: items.join( "" ) }).appendTo("table");
+ });
+	 
+	 
+ 
+ </script>
+ 
+</body>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Movie List</strong>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</html>

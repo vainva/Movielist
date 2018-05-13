@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bulma.css" th:href="@{css/bulma.css}" />
+</head>
+<body>
+	<div class="box" style=width:350px>
+	<strong>Add Movies To Your List</strong>
+		<form th:object="${movie}" th:action="@{save}" action="#" method="post">
+		<br/>
+		  	<label for="name">Name: </label>
+			<input class="input is-hovered" type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="director">Director: </label>
+			<input class="input is-hovered" type="text" id="director" th:field="*{director}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="year">Year: </label>
+			<input class="input is-hovered" type="text" id="year" th:field="*{year}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save" class="button is-info"></input>
+		</form>
+	</div>
+</body>
+</html>

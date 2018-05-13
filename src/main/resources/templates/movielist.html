@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <title>Movie List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link type="text/css" rel="stylesheet" href="css/bulma.css" th:href="@{css/bulma.css}" />
+ 
+</head>
+
+<body background="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/01/oscars-2018-full-nominations-list.jpg?itok=_U76WzXU">
+
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Movie List</h1>
+        <h2 class="subtitle">by Valtteri</h2>
+      </div>
+    </div>
+  </section>
+  
+  
+<section class="hero  is-white">
+ <div class="tabs is-boxed" >
+  <ul>
+    <li class="is-active" ><a>My Movies</a></li>
+    <li><a href="http://localhost:8080/top10movies" >Top 10 Movie</a></li>
+    <a/>
+    	<form th:action="@{/logout}" method="post" style="float: right">
+            <input type="submit" value="Sign Out" class="button is-danger"/>
+        </form>
+  </ul>
+</div>
+</section>
+
+  <br/>
+
+
+  <div class="box" style=width:650px>
+    <article class="media">
+      <div class="media-left">
+
+        <table class="table table is-striped">
+          <tr>
+            <th>Name</th>
+            <th>Director</th>
+            <th>Year Released</th>
+            
+          </tr>
+
+         
+            <tr th:each="movie : ${movies}">
+             <td th:text="${movie.name}"></td>
+             <td th:text="${movie.director}"></td>
+             <td th:text="${movie.year}"></td>
+             <td sec:authorize="hasAuthority('ADMIN')" ><a th:href="@{/delete/{id}(id=${movie.id})}" class="button is-danger">Delete</a></td> 
+            </tr>
+          
+
+        </table>
+        <form action="/addmovie" method="get">
+        <button sec:authorize="hasAuthority('ADMIN')" class="button is-info" type="submit">Add movies</button>
+    </form>
+      </div>
+    </article>
+    
+  </div>
+
+  
+
+
+</body>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Movie List</strong>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</html>
